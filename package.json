@@ -1,0 +1,29 @@
+{
+  "name": "qa-api",
+  "version": "1.0.0",
+  "description": "sdc dbms for questions and answers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon QADB/server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrnyc30-antares/QandA-API.git"
+  },
+  "author": "James Prytherch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrnyc30-antares/QandA-API/issues"
+  },
+  "homepage": "https://github.com/hrnyc30-antares/QandA-API#readme",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.24",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  }
+}
