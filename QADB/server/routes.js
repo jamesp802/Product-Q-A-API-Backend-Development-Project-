@@ -19,34 +19,88 @@ const routerSQL = express.Router();
 const SQL = require("../sql/");
 const sqlModels = require("../sql/models");
 
+routerSQL.get("/qa/:question_id/answers", (req, res) => {
+
+  let result = sqlModels
+    .getAnswers(req.params.question_id)
+    .then((data) => res.send({
+      question: req.params.question_id,
+      page: 0,
+      count: 5,
+      results: data
+    }))
+    .catch((err) => {
+      console.log(err);
+      res.send("failed");
+    });
+});
+
 routerSQL.get("/qa/:product_id", (req, res) => {
   sqlModels
     .getQuestions(req.params.product_id)
-    .then((data) => res.send({ results: data }))
+    .then((data) => res.send({ product_id: req.params.product_id,results: data }))
     .catch((err) => {
       console.log(err);
       res.send("failed");
     });
 });
 
-routerSQL.get("/qa/:question_id/answers", (req, res) => {
-  sqlModels
-    .getQuestions(req.params.question_id)
-    .then((data) => res.send({ results: data }))
-    .catch((err) => {
-      console.log(err);
-      res.send("failed");
-    });
-});
 
 routerSQL.post("/qa/:product_id", (req, res) => {
-  console.log(req.body);
+  sqlModels.postQuestion(req.params.product_id, req.body)
+  .then((data) => {
+    res.send('Succesful Post!');
+  }).catch((err) => {
+    console.log(err);
+    res.send('failed to post!')
+  })
 });
 
-routerSQL.post("/qa/:question_id/answer", (req, res) => {});
+routerSQL.post("/qa/:question_id/answers", (req, res) => {
+  sqlModels.postAnswer(req.params.question_id, req.body)
+  .then((data) => {
+    res.send('Succesful Post!');
+  }).catch((err) => {
+    console.log(err);
+    res.send('failed to post!')
+  })
+});
 
-routerSQL.put("/qa/question/:question_id/helpful", (req, res) => {});
+routerSQL.put("/qa/question/:question_id/helpful", (req, res) => {
+  sqlModels.updateHelpfulQuestion(req.params.question_id).then(() => {
+    res.send('Successful Update Helpful')
+  }).catch(err => {
+    res.send('failed');
+    console.log(err);
+  })
+});
+routerSQL.put("/qa/question/:question_id/report", (req, res) => {
+  sqlModels.updateReportQuestion(req.params.question_id).then(() => {
+    res.send('Successful Update report').then(() => {
+      res.send('Successful Update report')
+    }).catch(err => {
+      res.send('failed');
+      console.log(err);
+    })
+  })
+});
 
-routerSQL.put("/qa/answer/:answer_id/helpful", (req, res) => {});
+
+routerSQL.put("/qa/answer/:answer_id/helpful", (req, res) => {
+  sqlModels.updateHelpfulAnswer(req.params.answer_id).then(() => {
+    res.send('Successful Update Helpful Answer')
+  }).catch(err => {
+    res.send('failed');
+    console.log(err);
+  })
+});
+routerSQL.put("/qa/answer/:answer_id/report", (req, res) => {
+  sqlModels.updateReportAnswer(req.params.answer_id).then(() => {
+    res.send('Successful Update Report Answer')
+  }).catch(err => {
+    res.send('failed');
+    console.log(err);
+  })
+});
 
 module.exports.routerSQL = routerSQL;
