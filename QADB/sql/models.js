@@ -149,5 +149,8 @@ module.exports = {
   },
   updateReportAnswer: (answer_id) => {
     return db.queryAsync(`UPDATE answers SET reported_ans=reported_ans+1 WHERE id_ans=${answer_id}`);
+  },
+  insertAnswerPhoto: (answer_id, url) => {
+    return db.queryAsync(`INSERT INTO images (answer_id_img, url_img) VALUES ('${answer_id}', '${url}')`);
   }
 };
