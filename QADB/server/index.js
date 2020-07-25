@@ -9,5 +9,5 @@ app.use(cors());
 app.use(bodyParser())
 app.use('/sql/', routers.routerSQL);
 
-const port = 1337;
+const port = process.env.PORT || 1337;
 app.listen(port, () => console.log(`service is running on port ${port}`));
