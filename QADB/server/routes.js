@@ -31,8 +31,7 @@ routerSQL.get("/qa/:question_id/answers", (req, res) => {
       })
     )
     .catch((err) => {
-      console.log(err);
-      res.send("failed");
+      res.send("Failed to get Answers...");
     });
 });
 
@@ -44,7 +43,7 @@ routerSQL.get("/qa/:product_id", (req, res) => {
     )
     .catch((err) => {
       console.log(err);
-      res.send("failed");
+      res.send("Failed to get Questions...");
     });
 });
 
@@ -52,11 +51,11 @@ routerSQL.post("/qa/:product_id", (req, res) => {
   sqlModels
     .postQuestion(req.params.product_id, req.body)
     .then((data) => {
-      res.send("Succesful Post!");
+      res.send("Successful post question");
     })
     .catch((err) => {
       console.log(err);
-      res.send("failed to post!");
+      res.send("Failed to post question...");
     });
 });
 
@@ -76,11 +75,11 @@ routerSQL.post("/qa/:question_id/answers", (req, res) => {
       }
     })
     .then((data) => {
-      res.send('successful post answer');
+      res.send('Successful post answer');
     })
     .catch((err) => {
       console.log(err);
-      res.send("failed to post!");
+      res.send("Failed to post answer...");
     });
 });
 
@@ -91,7 +90,7 @@ routerSQL.put("/qa/question/:question_id/helpful", (req, res) => {
       res.send("Successful Update Helpful");
     })
     .catch((err) => {
-      res.send("failed");
+      res.send("Failed to update helpful");
       console.log(err);
     });
 });
@@ -99,12 +98,8 @@ routerSQL.put("/qa/question/:question_id/report", (req, res) => {
   sqlModels.updateReportQuestion(req.params.question_id).then(() => {
     res
       .send("Successful Update report")
-      .then(() => {
-        res.send("Successful Update report");
-      })
       .catch((err) => {
-        res.send("failed");
-        console.log(err);
+        res.send("Failed to update report question...");
       });
   });
 });
@@ -116,7 +111,7 @@ routerSQL.put("/qa/answer/:answer_id/helpful", (req, res) => {
       res.send("Successful Update Helpful Answer");
     })
     .catch((err) => {
-      res.send("failed");
+      res.send("Failed to update helpful answer...");
       console.log(err);
     });
 });
@@ -127,7 +122,7 @@ routerSQL.put("/qa/answer/:answer_id/report", (req, res) => {
       res.send("Successful Update Report Answer");
     })
     .catch((err) => {
-      res.send("failed");
+      res.send("Failed to update report answer...");
       console.log(err);
     });
 });

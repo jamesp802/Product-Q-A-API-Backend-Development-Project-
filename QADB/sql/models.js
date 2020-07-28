@@ -26,13 +26,10 @@ module.exports = {
               answers: data[i].id_ans ? {
                 [data[i].id_ans]: {
                   id: data[i].id_ans,
-                  // question_id: data[i].question_id,
                   answerer_name: data[i].answerer_name,
-                  // answerer_email: data[i].answerer_email,
                   body: data[i].body_ans,
                   date: data[i].date_ans,
                   helpful: data[i].helpful_ans,
-                  // reported: data[i].helpful_ans,
                   photos: data[i].url_img === null ? [] : [data[i].url_img],
                 },
               } : {},
@@ -52,13 +49,10 @@ module.exports = {
 
             results[ids[data[i].question_id]].answers[data[i].id_ans] = {
               id: data[i].id_ans,
-              // question_id: data[i].question_id,
               answerer_name: data[i].answerer_name,
-              // answerer_email: data[i].answerer_email,
               body: data[i].body_ans,
               date: data[i].date_ans,
               helpful: data[i].helpful_ans,
-              // reported: data[i].helpful_ans,
               photos: temp,
             };
           }

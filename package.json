@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "nodemon QADB/server/index.js"
+    "start": "node QADB/server/index.js"
   },
   "repository": {
     "type": "git",
